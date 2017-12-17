@@ -5,9 +5,9 @@
 - Vuejs + Vue-resource
 - Python + pytesseract（OCR 引擎） + flask-restful（restful api 服务器） + jieba（结巴分词）
 
-## DONE：
+### DONE：
  - Python 版本识图接口
 
-##TODO：
+### TODO：
  - node 版本识图接口
  - 识图算法优化
