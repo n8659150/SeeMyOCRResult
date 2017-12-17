@@ -1,5 +1,7 @@
-# SeeMyOCRResult
-一个支持加载图片到浏览器并直接在前端查看OCR输出结果的小项目
+# SeeMyOCRResult -- 一个自制的OCR识别接口
+- 打开主页面，加载图片至浏览器
+- 点击OCR按钮，查看提取后的文字
+- 就这么简单
 
 ## 技术栈
 - Vuejs + Vue-resource
