@@ -141,7 +141,6 @@ def getAbsFolderPath(folder):
 # 根据坐标画出区域，并切图保存
 def drawTextArea(sourceImg,region,savingPath,color,lineWidth):
     print ("drawTextArea")
-    imgArray = []
     for index,box in enumerate(region):
         temp_img = cv2.drawContours(sourceImg, [box], 0, color, lineWidth)
         ys = [box[0, 1], box[1, 1], box[2, 1], box[3, 1]]
@@ -175,11 +174,11 @@ def drawTextArea(sourceImg,region,savingPath,color,lineWidth):
         
         # if (blackPixelRatio < 85):
         cv2.imencode('.jpg',img_plate)[1].tofile(temp_filename)
-        imgArray.append(temp_filename)
+        # # imgArray.append(temp_filename)
         # img_item = cv2.imencode('.jpg',img_plate)[1]
         # imgArray.append(img_item.tolist())
-        print (temp_filename + " 已定位")
-    return imgArray
+        # print (temp_filename + " 已定位")
+    return {'status':'200'}
 # 提取文字
 def grabText(folder):
     croppedImgList = os.listdir(folder)
@@ -305,6 +304,7 @@ class post_test(Resource):
     def post(self):
         args = parser.parse_args()
         data_uri  = args.get('data_uri')
+        # print (data_uri)
         tags = detect(data_uri)
         return tags
 # 返回全部 hostname/all
