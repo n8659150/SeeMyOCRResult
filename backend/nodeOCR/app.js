@@ -1,6 +1,7 @@
 var tesseract = require('node-tesseract');
 var fs = require('fs');
 var image = require("imageinfo");
+var http = require('http');
 
 function readFileList(path, filesList) {
     var files = fs.readdirSync(path);
@@ -62,8 +63,14 @@ function recognizer (imgPath, options) {
 
 //获取文件夹下的所有图片
 let final = [];
+// 0.搭建koa2 restful 服务器
+// 1. 用户发送post请求到koa服务器
+// 2. koa 服务器获取到参数，base64 string 发送至python OCR 服务器（flask-restful）做切图处理
+// 3. 根据返回的路径来识别图片并保存结果
 let allImgs = getFiles.getImageFiles("./cropped/");
-let fullPath = allImgs.map(img => "cropped/" + img)
+let fullPath = ["C:\\Users\\liy3\\Desktop\\SeeMyOCRResult\\backend\\nodeOCR\\cropped\\temp_jpg\\0.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\1.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\2.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\3.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\4.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\5.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\6.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\7.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\8.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\9.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\10.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\11.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\12.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\13.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\14.jpg", "C:\Users\liy3\Desktop\SeeMyOCRResult\backend\nodeOCR\cropped\temp_jpg\15.jpg"]
+// let fullPath = allImgs.map(img => "cropped/" + img);
+console.log(fullPath)
 let result = fullPath.map(recognizer);
 Promise.all(result)
     .then(data => final.push(data))

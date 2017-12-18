@@ -231,6 +231,39 @@ def textProcess(textArray,savingPath):
     return {'taggedResult':tagResult.strip(',').split(','),'rankedResult':rankedResult.strip(',').split(',')}
 # 根据base64字符串识别并提取图片中的文字
 
+# def detect(data_uri):
+#     # 0. 读取图像
+#     # img = cv2.imread(filePath)
+#     # img = cv_read(filePath)
+#     img = data_uri_to_cv2_img(data_uri)
+#     # 1. 转化成灰度图
+#     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#     # 2. 形态学变换的预处理，得到可以查找矩形的图片
+#     dilation = preprocess(gray,True)
+#     # 3. 查找和筛选文字区域
+#     region = findTextRegion(dilation)
+#     # 4. 获取路径    
+#     croppedFolderPath = getAbsFolderPath("cropped")
+#     # dilationFolderPath = getAbsFolderPath("dilation")
+#     fileNameOnly = os.path.basename('temp.jpg').replace('.','_')
+#     fullPath = croppedFolderPath + fileNameOnly
+#     # dilationPath = dilationFolderPath + fileNameOnly
+#     # 若文件夹不存在则新建文件夹
+#     if not os.path.exists(fullPath): 
+#         os.mkdir(fullPath)
+#     else:
+#         shutil.rmtree(fullPath)
+#         os.mkdir(fullPath)
+#     # 5.根据坐标画出区域，并切图保存
+#     drawTextArea(img,region,fullPath,(0,255,0),2)
+#     # 6.OCR识别
+#     results = grabText(fullPath)
+#     # 7.对识别结果进行分词
+#     tagResult = textProcess(results,fullPath)
+#     return tagResult
+
+
+
 def detect(data_uri):
     # 0. 读取图像
     # img = cv2.imread(filePath)
@@ -255,13 +288,8 @@ def detect(data_uri):
         shutil.rmtree(fullPath)
         os.mkdir(fullPath)
     # 5.根据坐标画出区域，并切图保存
-    drawTextArea(img,region,fullPath,(0,255,0),2)
-    # 6.OCR识别
-    results = grabText(fullPath)
-    # 7.对识别结果进行分词
-    tagResult = textProcess(results,fullPath)
-    return tagResult
-
+    result = drawTextArea(img,region,fullPath,(0,255,0),2)
+    return result
 ###############################################
 # flask-restful server
 ###############################################
@@ -284,7 +312,7 @@ class post_test(Resource):
 api.add_resource(post_test, '/post_test')
 #  main 入口
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0')
 
 
 

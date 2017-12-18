@@ -27,7 +27,14 @@ let app = new Vue({
       this.$http.post("http://localhost:5000/post_test",{data_uri:this.image},{emulateJSON: true})
       .then(
         (response)=>{
-          console.log(response); 
+          console.log(response.data)
+          // let result = response.data.map((item) => {
+          //   let u8 = new Uint8Array(item);
+          //   // let decoder = new TextDecoder('utf8');
+          //   let b64encoded = btoa(encodeURIComponent(u8));
+          //   return b64encoded
+          // })
+          // console.log(result)
         },
         (error)=>{
           console.log(error);
