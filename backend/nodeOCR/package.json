@@ -1,0 +1,35 @@
+{
+  "name": "seemyocrresult",
+  "version": "1.0.0",
+  "description": "an ocr project that let you see the result of your \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Cocr \u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b result of your loaded image",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n8659150/SeeMyOCRResult"
+  },
+  "keywords": [
+    "OCR",
+    "js",
+    "javascript",
+    "python",
+    "OCR-engine",
+    "tesseract",
+    "pytesseract",
+    "node",
+    "tesseract"
+  ],
+  "author": "Jack Li",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "koa2-cors": "^2.0.5",
+    "node-tesseract": "^0.2.7",
+    "nodejieba": "^2.2.5",
+    "request": "^2.83.0"
+  }
+}
